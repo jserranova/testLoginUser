@@ -11,8 +11,6 @@ public class ConfigDriver {
 
     public static WebDriver setupChromeDriver(){
         System.setProperty(Constants.DRIVER_GOOBLE,Constants.RUTA_GOOGLE);
-        System.setProperty(Constants.WEB_GOGLE,Constants.RUTA);
-
         WebDriver driver = new ChromeDriver();
         driver.get(Constants.PAG);
         driver.manage().window().maximize();

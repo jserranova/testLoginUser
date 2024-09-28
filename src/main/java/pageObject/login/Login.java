@@ -19,42 +19,35 @@ import static org.openxmlformats.schemas.spreadsheetml.x2006.main.STCfvoType.FOR
 
 public class Login extends Wrapper {
 
+
+    public Login(WebDriver driver) {
+        super(driver);
+    }
+
     private WebDriver driver;
 
     @FindBy(id = Constants.USERNAME)
     private WebElement inputUserName;
     @FindBy(id = Constants.PASSWORD)
     private WebElement inputPassword;
-    @FindBy(xpath = Constants.BUTTON_LOGIN)
+    @FindBy(id = Constants.BUTTON_LOGIN)
     private WebElement inputButtonLogin;
 
-    //locator
-    private By userName = By.id("user-name");
-    private By password = By.id("password");
-    private By existButton = By.xpath("//input[@type='submit']");
 
-    public Login(WebDriver driver) {
-        super(driver);
-    }
+
 
     public void userLogin() {
-        clearInput(inputUserName);
-        insertValue(userName, "stardard-user");
-        clearInput(inputPassword);
-        insertValue(password, "secret_sauce");
-        clickButton(inputButtonLogin);
+       sendKeys(inputUserName, Constants.USER_VI);
+       sendKeys(inputPassword, Constants.PASS_QA);
+       clickButton(inputButtonLogin);
     }
 
-    public Boolean isExistElement() {
 
-        return isDisplayed(existButton);
-
-    }
     public void prueba() throws InterruptedException{
         Thread.sleep(3000);
         try {
             // Abre el archivo Excel
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\jserranova\\Desktop\\Proyecto_Autmatizacion_Confuturo\\testLoginUser.xlsx"));
+            FileInputStream file = new FileInputStream(new File("D:\\Automatizacion_Selenuimtest\\Usuario.xlsx"));
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);
 

@@ -15,6 +15,11 @@ public class Wrapper {
         this.driver = driver;
     }
 
+
+    public static void sendKeys(WebElement webSendKeys, String textToSend) {
+        webSendKeys.clear();
+        webSendKeys.sendKeys(textToSend);
+    }
     // Locate an item
     public WebElement findElement(By locator) {
         return driver.findElement(locator);

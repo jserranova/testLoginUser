@@ -6,34 +6,32 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObject.login.Login;
 
 import java.time.Duration;
 
-public class TestBase {
+public class TestBase  {
+
 
   WebDriver driver = ConfigDriver.setupFirefoxDriver();
+  private Login login;
 
 
+  @BeforeClass
+  public void init() {
+   login = PageFactory.initElements(driver, Login.class);
 
+  }
 
-    @BeforeClass
-    public void init() throws Exception {
+  @Test
+  public void test() {
+  login.userLogin();
 
+  }
 
-
-
-    }
-
-    @Test
-    public void test() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
-
-
-    }
-
-    @AfterTest
-    public void close() {
-        //driver.close();
-    }
+  @AfterTest
+  public void close() {
+    driver.quit();
+  }
 
 }
